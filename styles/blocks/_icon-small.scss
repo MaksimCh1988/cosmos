@@ -1,0 +1,17 @@
+.icon-small {
+  @include flex-center(true);
+
+  background-color:var(--color-gray);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+
+  &__image{
+    filter: drop-shadow(0px 4px 7px rgba(99, 117, 124, 0.80));
+  }
+
+  @include mobile {
+    width: 32px;
+    height: 32px;
+  }
+}

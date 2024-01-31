@@ -1,0 +1,574 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/PlusJakartaSans-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/PlusJakartaSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/PlusJakartaSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* 1440 это ширина самого макета ,а не контейнера */
+/* как пользоваться
+.element {
+  padding-block: 100px;
+  font-size: 30px;
+
+  @include desktop {
+    padding-block: 50px;
+    font-size: 18px;
+  }
+}               */
+/* hover:none для устройств с тачскрином */
+/* как пользоваться
+button {
+  background-color: lightblue;
+  @include hover {
+    background-color: lightcoral;
+  }
+}               */
+:root {
+  --color-light: #ffffff;
+  --color-dark: #171E27;
+  --color-dark-alt: #0D0F12;
+  --color-gray: #A9C2CB;
+  --border-radius-medium: 24px;
+  --border-radius-small: 20px;
+  --border-radius-large: 40px;
+  --shadow: 0px 19px 45px -10px rgba(13, 15, 18, 0.50);
+  --font-family-base: "Plus Jakarta Sans";
+  --container-width: 1680px;
+  --container-padding-x: 24px; /* из мобильной версии макета */
+  --section-padding-y: 80px;
+  --input-height: 82px;
+  --button-height: 82px;
+  --transition-duration: 0.2s;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(14px, 1.25vw, 18px);
+  font-family: var(--font-family-base), sans-serif;
+  font-weight: 500;
+  /* font-size: 18px; вместо него fluid-text */
+  line-height: 1.28; /* значение normal в chrome*/
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(32px, 4.4444444444vw, 64px);
+}
+
+h2 {
+  font-size: clamp(18px, 1.6666666667vw, 24px);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+}
+
+.button {
+  color: var(--color-light);
+  background-color: var(--color-dark-alt);
+  border: 0;
+  border-radius: var(--border-radius-small);
+  height: var(--button-height);
+  padding-inline: 54px;
+  transition-duration: --transition-duration;
+}
+@media (hover: hover) {
+  .button:hover {
+    color: var(--color-dark-alt);
+    background-color: var(--color-light);
+    outline: 1px solid var(--color-dark-alt);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    color: var(--color-dark-alt);
+    background-color: var(--color-light);
+    outline: 1px solid var(--color-dark-alt);
+  }
+}
+
+.burger-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  width: 24px;
+  aspect-ratio: 1;
+}
+
+.header {
+  font-weight: 600;
+  padding-top: 77px;
+  margin-bottom: 81px;
+}
+@media (max-width: 767px) {
+  .header {
+    padding-top: 26px;
+    margin-bottom: 26px;
+  }
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+@media (max-width: 1023px) {
+  .header__inner {
+    gap: 32px;
+  }
+}
+.header__navigation {
+  margin-left: auto;
+}
+@media (max-width: 1023px) {
+  .header__button {
+    padding-inline: 20px;
+    height: 50px;
+    white-space: nowrap;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+@media (max-width: 1023px) {
+  .menu {
+    gap: 32px;
+  }
+}
+.menu__link {
+  display: inline-flex;
+  align-items: center;
+  height: 60px;
+  position: relative;
+}
+@media (hover: hover) {
+  .menu__link:hover::after {
+    width: 100%;
+  }
+}
+@media (hover: none) {
+  .menu__link:active::after {
+    width: 100%;
+  }
+}
+.menu__link::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 0;
+  height: 3px;
+  background-color: currentColor;
+  transition-duration: var(--transition-duration);
+}
+
+.hero__header {
+  background-image: url(../images/bg/bg-1.png);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  min-height: 533px;
+  border-radius: var(--border-radius-large);
+  padding: 60px;
+  margin-bottom: 40px;
+}
+@media (max-width: 767px) {
+  .hero__header {
+    border-radius: 0;
+    background-position: -100px -30px;
+    padding: 24px;
+  }
+}
+.hero__title {
+  max-width: 411px;
+  color: var(--color-light);
+}
+@media (max-width: 767px) {
+  .hero__title {
+    max-width: 340px;
+  }
+}
+.hero__wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 150px;
+}
+@media (max-width: 1023px) {
+  .hero__wrapper {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .hero__wrapper {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+}
+.hero__main {
+  display: inline-flex;
+  flex-direction: column;
+  max-width: 700px;
+  gap: 40px;
+  flex-shrink: 1;
+}
+.hero__main-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 77px;
+}
+.hero__text {
+  line-height: 33px;
+}
+.hero__link {
+  font-weight: bolder;
+}
+.hero__graphs {
+  margin-top: -500px;
+  flex-shrink: 0;
+}
+@media (max-width: 1023px) {
+  .hero__graphs {
+    margin-top: -400px;
+    flex-shrink: 1;
+    margin-bottom: 100px;
+  }
+}
+@media (max-width: 767px) {
+  .hero__graphs {
+    margin-top: -400px;
+    flex-shrink: 1;
+    margin-bottom: 60px;
+  }
+}
+.hero__partners-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.graphs {
+  max-width: 767px;
+  position: relative;
+}
+.graphs__image {
+  max-width: 100%;
+  height: auto;
+}
+.graphs__title {
+  display: inline-block;
+  margin-bottom: 19px;
+  margin-left: 10px;
+}
+@media (max-width: 767px) {
+  .graphs__title {
+    margin-bottom: 15px;
+    margin-left: 5px;
+  }
+}
+.graphs__spacewalks {
+  background-color: var(--color-light);
+  max-width: 337px;
+  border-radius: var(--border-radius-medium);
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  padding: 20px;
+}
+@media (max-width: 767px) {
+  .graphs__spacewalks {
+    max-width: 172px;
+    padding: 12px;
+  }
+}
+.graphs__spacewalks-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+.graphs__spacewalks-wrapper img {
+  max-width: 50%;
+  height: auto;
+}
+.graphs__exercising {
+  background-color: var(--color-light);
+  max-width: 266x;
+  border-radius: var(--border-radius-medium);
+  position: absolute;
+  top: 45%;
+  right: 5%;
+  padding: 20px;
+}
+@media (max-width: 767px) {
+  .graphs__exercising {
+    max-width: 149px;
+    padding: 12px;
+  }
+  .graphs__exercising img {
+    max-width: 125px;
+  }
+}
+.graphs__total-time {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  max-width: 464px;
+  border-radius: var(--border-radius-medium);
+  padding: 20px;
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  translate: -50%;
+}
+.graphs__total-time time {
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 12px;
+  font-size: clamp(16px, 1.6666666667vw, 24px);
+  text-wrap: nowrap;
+}
+
+.section {
+  padding-bottom: var(--section-padding-y);
+}
+
+.icon-small {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+.icon-small__image {
+  filter: drop-shadow(0px 4px 7px rgba(99, 117, 124, 0.8));
+}
+@media (max-width: 767px) {
+  .icon-small {
+    width: 32px;
+    height: 32px;
+  }
+}/*# sourceMappingURL=styles.css.map */

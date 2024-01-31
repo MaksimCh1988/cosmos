@@ -1,0 +1,25 @@
+:root {
+  --color-light: #ffffff;
+  --color-dark: #171E27;
+  --color-dark-alt: #0D0F12;
+  --color-gray: #A9C2CB;
+
+
+  --border-radius-medium: 24px;
+  --border-radius-small: 20px;
+  --border-radius-large: 40px;
+
+  --shadow:  0px 19px 45px -10px rgba(13, 15, 18, 0.50);
+
+  --font-family-base: 'Plus Jakarta Sans';
+
+  --container-width: 1680px;
+  --container-padding-x: 24px; /* из мобильной версии макета */
+
+  --section-padding-y: 80px;
+
+  --input-height: 82px;
+  --button-height: 82px;
+
+  --transition-duration: 0.2s;
+}

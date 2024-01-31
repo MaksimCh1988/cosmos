@@ -1,0 +1,4 @@
+.burger-button {
+  @include reset-button ;
+  @include square(24px);
+}

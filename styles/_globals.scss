@@ -1,0 +1,40 @@
+body {
+  @include fluid-text(18, 14);
+
+  font-family: var(--font-family-base), sans-serif;
+  font-weight: 500;
+  /* font-size: 18px; вместо него fluid-text */
+  line-height: 1.28; /* значение normal в chrome*/
+  color: var(--color-dark);
+  background-color: var(--color-light);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  @include fluid-text(64, 32);
+}
+
+h2 {
+  @include fluid-text(24, 18);
+}
+
+
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 800;
+}

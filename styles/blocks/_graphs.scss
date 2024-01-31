@@ -1,0 +1,81 @@
+.graphs {
+  max-width: 767px;
+  position: relative;
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    
+  }
+  &__title {
+    display: inline-block;
+    margin-bottom: 19px;
+    margin-left: 10px;
+    @include mobile {
+      margin-bottom: 15px;
+      margin-left: 5px;
+    }
+  }
+  &__spacewalks {
+    background-color: var(--color-light);
+    max-width: 337px;
+    border-radius: var(--border-radius-medium);
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    padding: 20px;
+
+    @include mobile {
+      max-width: 172px;
+      padding: 12px;
+    }
+  }
+  &__spacewalks-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+    img{
+      max-width: 50%;
+      height: auto;
+    }
+
+  }
+  &__exercising {
+    background-color: var(--color-light);
+    max-width: 266x;
+    border-radius: var(--border-radius-medium);
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    padding: 20px;
+
+    @include mobile {
+      max-width: 149px;
+      padding: 12px;
+      img {
+        max-width: 125px;
+      }
+    }
+  }
+  &__total-time {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    max-width: 464px;
+    border-radius: var(--border-radius-medium);
+    padding: 20px;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    translate: -50%;
+
+    time {
+      display: block;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 12px;
+      @include fluid-text(24, 16);
+      text-wrap: nowrap;
+    }
+  }
+}

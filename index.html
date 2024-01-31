@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Odyssey</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner container">
+        <a class="header__logo logo" href="/"
+          ><img class="logo__image" src="./images/logo.svg" alt="Odyssey logo" width="205" height="32" loading="lazy"
+        /></a>
+        <nav class="header__navigation hidden-mobile">
+          <ul class="menu">
+            <li class="menu__item"><a href="/" class="menu__link">Stay Connected</a></li>
+            <li class="menu__item"><a href="/" class="menu__link">Education</a></li>
+            <li class="menu__item"><a href="/" class="menu__link">Community</a></li>
+            <li class="menu__item"><a href="/" class="menu__link">About Us</a></li>
+          </ul>
+        </nav>
+        <button class="header__button button hidden-mobile" type="button">Sign in</button>
+        <button class="header__burger-button burger-button visible-mobile" onclick="mobileOverLay.showModal()">
+          <span class="visually-hidden">Naigation Menu</span>
+          <img class="burger-button__image" src="./images/burger-button.svg" alt="" width="" height="" loading="lazy" />
+        </button>
+      </div>
+    </header>
+    <main class="content">
+      <section class="section container">
+        <div class="hero ">
+          <div class="hero__header">
+            <h1 class="hero__title">Unveiling the Wonders of the Universe</h1>
+          </div>
+          <div class="hero__wrapper ">
+            <div class="hero__graphs graphs">
+              <img
+                class="graphs__image"
+                src="./images/astronaut.png"
+                alt="astronaut"
+                width="767"
+                height="767"
+                loading="lazy"
+              />
+              <div class="graphs__spacewalks">
+                <span class="icon-small"
+                  ><img
+                    class="icon-small__image"
+                    src="./images/icons/spacewalks.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    loading="lazy"
+                /></span>
+                <p class="graphs__title">Spacewalks</p>
+                <div class="graphs__spacewalks-wrapper">
+                  <img src="./images/spacewalks1.png" alt="graphic" width="138" height="71" loading="lazy" />
+                  <img src="./images/spacewalks2.png" alt="diagram" width="69" height="69" loading="lazy" />
+                </div>
+              </div>
+              <div class="graphs__exercising">
+                <span class="icon-small"
+                  ><img
+                    class="icon-small__image"
+                    src="./images/icons/exersizing.svg"
+                    alt=""
+                    width="16"
+                    height="14"
+                    loading="lazy"
+                /></span>
+                <p class="graphs__title">Exercising</p>
+                <img src="./images/exercising.png" alt="cardiogram" width="171" height="44" loading="lazy" />
+              </div>
+              <div class="graphs__total-time">
+                <span class="icon-small"
+                  ><img
+                    class="icon-small__image"
+                    src="./images/icons/totaltime.svg"
+                    alt=""
+                    width="14"
+                    height="16"
+                    loading="lazy"
+                /></span>
+                <p class="graphs__title">Total time in space</p>
+                <time datetime="352d 5h 49m 20s">352D 5H 49M 20S</time>
+              </div>
+            </div>
+            <div class="hero__main">
+              <div class="hero__text">
+                <p>
+                  At odissey, our mission is to inspire, educate, and ignite your passion for the cosmos. We are your
+                  premier destination for all things related to space exploration, astronomy, and the mysteries of the
+                  universe. Whether you're a seasoned astronomer or a curious novice, join us on a journey to the furthest
+                  reaches of the cosmos.
+                </p>
+              </div>
+              <div class="hero__main-wrapper">
+                <button class="hero__button button">Get Started</button>
+                <a class="hero__link" href="/">Watch the Video</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero__partners ">
+            <ul class="hero__partners-list">
+              <li class="hero__partners-item">
+                <img
+                  class="hero__partners-image"
+                  src="./images/partners/spacex.png"
+                  alt="spacex"
+                  width="197"
+                  height="32"
+                  loading="lazy"
+                />
+              </li>
+              <li class="hero__partners-item">
+                <img
+                  class="hero__partners-image"
+                  src="./images/partners/boeing.png"
+                  alt="boeing"
+                  width="206"
+                  height="32"
+                  loading="lazy"
+                />
+              </li>
+              <li class="hero__partners-item">
+                <img
+                  class="hero__partners-image"
+                  src="./images/partners/nasa.png"
+                  alt="nasa"
+                  width="117"
+                  height="32"
+                  loading="lazy"
+                />
+              </li>
+              <li class="hero__partners-item">
+                <img
+                  class="hero__partners-image"
+                  src="./images/partners/astroscale.png"
+                  alt="astroscale"
+                  width="117"
+                  height="32"
+                  loading="lazy"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="mobile-overlay visible-mobile" id="mobileOverLay">
+      <form class="mobile-overlay__close-button-wrapper" method="dialog">
+        <button class="mobile-overlay__close-button cross-button" type="submit">
+          <span class="visually-hidden">Close menu</span>
+        </button>
+      </form>
+      <div class="mobile-overlay__body">
+        <ul class="mobile-overlay__list">
+          <li class="mobile-overlay__item"><a href="/" class="mobile-overlay__link">Stay Connected</a></li>
+          <li class="mobile-overlay__item"><a href="/" class="mobile-overlay__link">Education</a></li>
+          <li class="mobile-overlay__item"><a href="/" class="mobile-overlay__link">Community</a></li>
+          <li class="mobile-overlay__item"><a href="/" class="mobile-overlay__link">About Us</a></li>
+        </ul>
+      </div>
+    </dialog>
+  </body>
+</html>

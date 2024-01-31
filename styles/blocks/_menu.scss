@@ -1,0 +1,35 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  gap:48px;
+
+  @include tablet {
+    gap:32px;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    height: 60px;
+    position: relative;
+
+    @include hover {
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0%;
+      width: 0;
+      height: 3px;
+      background-color: currentColor;
+      transition-duration: var(--transition-duration);
+    }
+  }
+
+
+}
